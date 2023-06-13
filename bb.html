@@ -11,21 +11,64 @@
     <link rel="stylesheet" type="text/css" href="css/main.css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
     <script type="text/javascript" src="dist/jquery.scrollUp.js"></script>
-     <script type="text/javascript" src="dist/demo.js"></script>
+    <script type="text/javascript" src="dist/demo.js"></script>
+    
 <style>
   .button_proceed {
   background-color: #cc4151;
-border: none;
+  border: none;
   color: white;
-  padding: 15px 32px;
-  text-align: center;
+  padding: 20px 20px;
+
   text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
+  font-size: 12px;
 }
    </style>
+
+<script src="https://smtpjs.com/v3/smtp.js"></script>
+
+<script>
+function generateRandomNumber() {
+    var minm = 100000;
+    var maxm = 999999;
+    return Math.floor(Math
+    .random() * (maxm - minm + 1)) + minm;
+}
+</script>
+<script>
+var gen_otp=generateRandomNumber();
+function sm_vapis()
+{
+
+const mail=email1.value;
+Email.send({
+    Host : "smtp.elasticemail.com",
+    Username : "nisjcomponent@gmail.com",
+    Password : "9F86D242009893FB65795944E88E988FABFB",
+    To : mail,
+    From : "nisjcomponent@gmail.com",
+    Subject : "OTP For Hotels.com",
+    Body : "Hello User,This Is The Message From Hotels.com To Authenticate Your Account.Your One Time Password Is :"+gen_otp
+}).then(
+  message => alert("OTP SENT........")
+);}
+function proceed()
+{
+
+	if(name1.value<1){alert("Enter credentials completely");}
+	else if(email1.value<1){alert("Enter Email");}
+	else if(user_otp.value<1){alert("Enter OTP.");}
+	else{
+	const otp1=user_otp.value;
+	if(gen_otp==otp1){alert("OTP Authenticate Successfully.Your Booking Confirmed");}
+	else{alert("Sorry Wrong Otp..");}
+	}
+}
+</script>
+    
 </head>  
 <body>
+
     <header class="tm-header">
         <img class="tm-logo" src="images/Majestic_Hotel_hd.png" alt="Majestic Hotel">
         <nav class="tm-nav">
@@ -49,11 +92,9 @@ border: none;
     
     
     <section class="tm-booking">
-    
-    <form>
         <div class="tm-form1">
-    <input type="text" name="name" id="name1">  
-    <input type="email" name="email" id="email1"> 
+    <input type="text" name="name" id="name1" placeholder="Enter Name">  
+    <input type="email" name="email" id="email1" placeholder="Enter Email"> 
     <label  for="rooms" id="inlinelable">Rooms</label>
     <select name="Rooms" id="rooms">
         <option value="luxurys">Luxury Suite</option>
@@ -81,7 +122,7 @@ border: none;
         <input type="text" name="number2" id="number2" value="1">
             <button type="button" class="counter-plus btn btn-primary">+</button>
             </div>
-  
+      
     </div>
         
         <div class="vertical-line"> </div>
@@ -90,24 +131,18 @@ border: none;
    <div class="tm-cl">
         <label for="date1" class="arrival">Visiting Dates from Arrival to Departure</label>
 
-     <input type="text" name="date1" class="range" readonly="readonly"> 
-        
-
-  <!--     <input type="submit" id="sub" value="Proceed" onclick="myFunction()">-->
-	<button class="button_proceed" type="Submit" id="sub" value="Proceed" onclick="proceed()" >Proceed Here</button>
-	<script>
-	function proceed()
-	{
-	if(name1.value<1){alert("Enter credentials completely");}
-	else if(email1.value<1){alert("Enter credentials completely");}
-	else{alert("Your Booking Confirmed");}
-	}
-	</script>	
+     <input type="text" name="date1" class="range" readonly="readonly"> <br>      
  </div>
+
     </div>
-        </form>
-  </section>
-  <footer class="tm-footer">
+<div class="tm-form2">
+	<input type="text" name="name" id="user_otp" placeholder="Enter OTP"> <br><br><br>
+       <button class="button_proceed" type="Submit" id="sub" value="Proceed" onclick="sm_vapis()" >Send OTP....</button><br><br><br>
+	<button class="button_proceed" name="button1" type="Submit" id="sub" onclick="proceed()">Proceed Here</button>
+</div>  
+</section> 
+
+ <footer class="tm-footer">
         <div class="tm-us">
         <p class="bold">About Us</p>
         <p>We are a part of chain of luxury hotels 
@@ -135,7 +170,6 @@ border: none;
     </footer>
     
 
-    
     </body>
     
 </html>
